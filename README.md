@@ -14,3 +14,6 @@ which identifies the card value based on below functionalities
  1) Reads the player card values from the "pokerhand" text file
  2) Performs computations 
  3) Print results in the "gameoutcome.txt"
+ 
+ To run this file
+ Run "start.java" file
