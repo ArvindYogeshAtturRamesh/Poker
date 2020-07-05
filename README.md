@@ -1,5 +1,6 @@
 # Poker
 This console application has been developed in java using Eclipse IDE
+This application developed in 5 hours
 
 It's an initial level of poker game
 which identifies the card value based on below functionalities
