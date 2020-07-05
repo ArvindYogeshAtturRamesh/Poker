@@ -1,0 +1,34 @@
+		public void getCardValues() {
+		ArrayList<String> cardValues = new ArrayList<>();
+		cardValues.add("5C 9D 9D 7C 3C 2S KD TH 9H 8H");
+		cardValues.add("2D 9C AS AH AC 2S KD TH 9H 8H");
+		cardValues.add("");
+		//String playerOne = getPlayerOneCardValues(cardValues.get(0));
+		//String playerTwo = getPlayerTwoCardValues(cardValues.get(0));
+		String highestCardPlayer1 = checkHighestCard("");
+		System.out.print("Highest Card is: "+highestCardPlayer1);
+		
+		//System.out.println("Player 1 pair value: "+ checkPairValueFromCardValue(playerOne));
+		//System.out.println("Player 2 pair value: "+ checkPairValueFromCardValue(playerTwo));
+			
+	}
+	
+	
+	
+	for(int i=0; i<playerCardValues.length; i++) {
+				if(playerCardValues[i] != null) {
+					for(int j=0; j<playerCardValues.length; j++) {
+						if(playerCardValues[j] != null){
+							firstValue = playerCardValues[i].charAt(0);
+							int firstCharToInt = Integer.parseInt(String.valueOf(firstValue));
+							char secondValue = playerCardValues[j].charAt(0);
+							int secondCharToInt = Integer.parseInt(String.valueOf(secondValue));
+							if(firstCharToInt > secondCharToInt) {
+								integerCardValue = firstCharToInt;
+								firstValue = (char)integerCardValue;
+		
+							}
+						}
+					}
+				}
+			}

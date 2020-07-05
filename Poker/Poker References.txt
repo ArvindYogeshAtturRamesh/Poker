@@ -1,0 +1,60 @@
+Pair card value
+	public void getCardValues() {
+		ArrayList<String> cardValues = new ArrayList<>();
+		cardValues.add("5C 9D 9D 7C 3C 2S KD TH 9H 8H");
+		
+		String playerOne = getPlayerOneCardValues(cardValues.get(0));
+		String playerTwo = getPlayerTwoCardValues(cardValues.get(0));
+		
+		System.out.println("Player 1 pair value: "+ checkPairValueFromCardValue(playerOne));
+		System.out.println("Player 2 pair value: "+ checkPairValueFromCardValue(playerTwo));
+			
+	}
+public String getPlayerOneCardValues(String playersCardValue) {
+		String playerOne = playersCardValue.substring(0,14);
+		return playerOne;		
+	}
+	
+	public String getPlayerTwoCardValues(String playersCardValue) {
+		
+		String playerTwo = playersCardValue.substring(15,29);
+		return playerTwo;		
+	}
+	
+	
+	
+	//Checks the pair value 
+	public char checkPairValueFromCardValue(String playerCardValue) {
+			
+		String[] playerCardValues = playerCardValue.split(" ");
+		int count = 0;
+		char valueOfCountPair='0';
+		String wholeValue ="0";
+			
+		//9C 9D 8D 7C 3C 
+	
+		for(int i=0; i<playerCardValues.length; i++) {
+			if(playerCardValues[i] != null) {
+				for(int j=0; j<playerCardValues.length; j++) {
+					if(playerCardValues[j] != null){
+						char firstValue = playerCardValues[i].charAt(0);						
+						char secondValue = playerCardValues[j].charAt(0);
+						if(i !=j && firstValue == secondValue) {
+							count++;
+							valueOfCountPair = secondValue; 
+							wholeValue = playerCardValues[i];
+						}
+					}
+				}
+			}
+		}
+		if(count == 0 && valueOfCountPair=='0' )			
+			//System.out.println("For the card: "+ playerCardValue+ " = No pair values found");
+			return valueOfCountPair;
+		else{
+			//System.out.println("countpair: "+count);
+			//System.out.println("Value: "+valueOfCountPair);
+			return valueOfCountPair;
+		}
+	}
+	
