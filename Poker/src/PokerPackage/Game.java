@@ -21,41 +21,23 @@ public class Game {
 	         FileWriter fw = new FileWriter(fileName);
 	         PrintWriter writer = new PrintWriter(fw);
 			
-			for(int i=0; i<cardValues.size(); i++) {
-				String playerOne = getPlayerOneCardValues(cardValues.get(i));
-				String playerTwo = getPlayerTwoCardValues(cardValues.get(i));
-				
-				writer.println(i + " game P1 - card is "+playerOne+" Highest Card =  "+rank.checkHighestCard(playerOne));
-				writer.println(i + " game P2 - card is "+playerTwo+" Highest Card =  "+rank.checkHighestCard(playerTwo));
-				
-				writer.println("Player 1 pair value: "+ rank.checkPairValueFromCardValue(playerOne));
-				writer.println("Player 2 pair value: "+ rank.checkPairValueFromCardValue(playerTwo));
-				
-				writer.println("Player 1 three of a card value: "+ rank.checkThreeOfAKind(playerOne));
-				writer.println("Player 2 three of a card value: "+ rank.checkThreeOfAKind(playerTwo));
-				
-				writer.println("Player 1 four of a card value: "+ rank.checkFourOfAKind(playerOne));
-				writer.println("Player 2 four of a card value: "+ rank.checkFourOfAKind(playerTwo));
-				writer.println();
-				
-			
-				System.out.println(i + " game P1 - card is "+playerOne+" Highest Card =  "+rank.checkHighestCard(playerOne));
-				System.out.println(i + " game P2 - card is "+playerTwo+" Highest Card =  "+rank.checkHighestCard(playerTwo));
-				
-				System.out.println("Player 1 pair value: "+ rank.checkPairValueFromCardValue(playerOne));
-				System.out.println("Player 2 pair value: "+ rank.checkPairValueFromCardValue(playerTwo));
-				
-				System.out.println("Player 1 three of a card value: "+ rank.checkThreeOfAKind(playerOne));
-				System.out.println("Player 2 three of a card value: "+ rank.checkThreeOfAKind(playerTwo));
-				
-				System.out.println("Player 1 four of a card value: "+ rank.checkFourOfAKind(playerOne));
-				System.out.println("Player 2 four of a card value: "+ rank.checkFourOfAKind(playerTwo));
-				System.out.println();
-				
-				
-				
-			}
+	 		cardValues.add("5C 9D 9D 7C 3C 2S KD TH 9H 8H");
+	 		cardValues.add("2D 9C AS AH AC 2S KD TH 9H 8H");
+	 		cardValues.add("");
 
+	 		String playerOne = getPlayerOneCardValues(cardValues.get(0));
+			String playerTwo = getPlayerTwoCardValues(cardValues.get(0));
+			
+			//String royalSuiteResult = rank.checkRoyalFlush("");
+			//String flushResult = rank.checkFlush();
+			//String fullHouseResult = rank.checkFullHouse("");
+			//String twoPairs = rank.checkTwoDifferentPairs("");	
+			//rank.checkStraight();
+			
+			rank.checkStraightFlush();
+			
+			//System.out.println("Full House Result: "+ twoPairs);
+	
 			
 		}catch(Exception ex) {
 			System.out.println("IO exception: "+ex);
@@ -74,8 +56,6 @@ public class Game {
 		String playerTwo = playersCardValue.substring(15,29);
 		return playerTwo;		
 	}
-	
-
 	
 
 }

@@ -1,3 +1,24 @@
+Royal Flush - Y
+Four of a kind - Y
+Flush - Y
+Three of a kind - Y
+Pair - Y
+High card  - Y
+Full house - Y
+Two pairs - Y
+Straight - Y
+Straight flush - Y
+
+
+
+
+2 different pairs
+"2S 2C 4S 4D 5H"
+
+Straight Flush
+"TD AD KD QD JD"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public void getCardValues() {
 		ArrayList<String> cardValues = new ArrayList<>();
 		cardValues.add("5C 9D 9D 7C 3C 2S KD TH 9H 8H");
@@ -31,4 +52,12 @@
 						}
 					}
 				}
+			}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	for(int k=0; k<integerCardValueList .size()-1; k++) {
+				if(integerCardValueList.get(k) + 1 == integerCardValueList.get(k + 1)) {
+					straightSequentialResult = "Y";
+					
+				}
+					
 			}
