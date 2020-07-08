@@ -61,3 +61,80 @@ Straight Flush
 				}
 					
 			}
+			
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public void getCardValues() {
+		try {
+			//Reads players card values from the text file
+			FileIO fileIO = new FileIO();
+			rank = new Rank();
+			ArrayList<String> cardValues = new ArrayList<>();
+			cardValues = fileIO.readInputs();
+			
+			 String fileName="gameoutcome.txt";
+	         FileWriter fw = new FileWriter(fileName);
+	         PrintWriter writer = new PrintWriter(fw);
+			
+	 		cardValues.add("5C 9D 9D 7C 3C 2S KD TH 9H 8H");
+	 		cardValues.add("2D 9C AS AH AC 2S KD TH 9H 8H");
+	 		cardValues.add("");
+
+	 		String playerOne = getPlayerOneCardValues(cardValues.get(0));
+			String playerTwo = getPlayerTwoCardValues(cardValues.get(0));
+			
+			//String royalSuiteResult = rank.checkRoyalFlush("");
+			//String flushResult = rank.checkFlush();
+			//String fullHouseResult = rank.checkFullHouse("");
+			//String twoPairs = rank.checkTwoDifferentPairs("");	
+			//rank.checkStraight();
+			//rank.checkStraightFlush("");
+			
+			//System.out.println("Full House Result: "+ twoPairs);
+	
+			
+		}catch(Exception ex) {
+			System.out.println("IO exception: "+ex);
+		}
+		
+			
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public char checkThreeOfAKind(String playerCardValue) {
+			//playerCardValue = "2H 2D 4C 4D 4S"; 
+			String[] playerCardValues = playerCardValue.split(" ");
+			int count = 0;
+			char valueOfThreeOfAKind='N';
+			String wholeValue ="0";
+			int threeKind ;
+
+			for(int i=0; i<playerCardValues.length; i++) {
+				if(playerCardValues[i] != null) {
+					for(int j=0; j<playerCardValues.length; j++) {
+						if(playerCardValues[j] != null){
+							char firstValue = playerCardValues[i].charAt(0);						
+							char secondValue = playerCardValues[j].charAt(0);
+							if(i !=j && firstValue == secondValue) {
+								count++;
+								valueOfThreeOfAKind = secondValue; 
+								wholeValue = playerCardValues[i];
+							}
+						}
+					}
+				}
+			}
+			if(count == 0 && valueOfThreeOfAKind=='0' )			
+				//System.out.println("For the card: "+ playerCardValue+ " = No pair values found");
+				return valueOfThreeOfAKind;
+			else{
+				if(count%3 == 0 && (count/2)==3) {
+					//threeKind = count/2;
+					return valueOfThreeOfAKind;
+					//System.out.println("Three of a kind: "+threeKind);
+					//System.out.println("Value: "+valueOfThreeOfAKind);
+				}
+
+				return valueOfThreeOfAKind;
+			}
+			
+		}
+		

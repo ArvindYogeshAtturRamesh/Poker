@@ -72,13 +72,15 @@ public class Rank {
 		
 		//Checks the PAIR value - Working fine 
 		public char checkPairValueFromCardValue(String playerCardValue) {
-				
+			//String playerCardValue = "9C 9D 5D 7C 3C";
 			String[] playerCardValues = playerCardValue.split(" ");
 			int count = 0;
 			char valueOfCountPair='N';
 			String wholeValue ="0";
 				
 			//9C 9D 8D 7C 3C 
+			
+			
 		
 			for(int i=0; i<playerCardValues.length; i++) {
 				if(playerCardValues[i] != null) {
@@ -95,19 +97,19 @@ public class Rank {
 					}
 				}
 			}
-			if(count == 0 && valueOfCountPair=='0' )			
+			if(count == 2 && valueOfCountPair !='0')			
 				//System.out.println("For the card: "+ playerCardValue+ " = No pair values found");
 				return valueOfCountPair;
 			else{
 				//System.out.println("countpair: "+count);
 				//System.out.println("Value: "+valueOfCountPair);
-				return valueOfCountPair;
+				return (valueOfCountPair='N');
 			}
 		}
 		
 		//Check Two different pairs - Working Fine
-		public String checkTwoDifferentPairs(String playerCardValue) {
-			String twoDifferentPairsString = "4S 2C 4S 5D 5H";
+		public String checkTwoDifferentPairs(String twoDifferentPairsString) {
+			//String twoDifferentPairsString = "4S 2C 4S 5D 5H";
 			String result = "N";
 			char tempFirstValue = 'N',  tempSecondValue = 'N', tempThirdValue = 'N';
 			int countFirstValue = 0, countSecondValue = 0, countThirdValue = 0;
@@ -162,49 +164,57 @@ public class Rank {
 		
 		//Check the Three of a Kind- Working Fine
 		public char checkThreeOfAKind(String playerCardValue) {
-			//playerCardValue = "2H 2D 4C 4D 4S"; 
+			//String playerCardValue = "2H 2D 4C 4D 4S"; 
 			String[] playerCardValues = playerCardValue.split(" ");
-			int count = 0;
+			
 			char valueOfThreeOfAKind='N';
-			String wholeValue ="0";
-			int threeKind ;
-
-			for(int i=0; i<playerCardValues.length; i++) {
-				if(playerCardValues[i] != null) {
-					for(int j=0; j<playerCardValues.length; j++) {
-						if(playerCardValues[j] != null){
-							char firstValue = playerCardValues[i].charAt(0);						
-							char secondValue = playerCardValues[j].charAt(0);
-							if(i !=j && firstValue == secondValue) {
-								count++;
-								valueOfThreeOfAKind = secondValue; 
-								wholeValue = playerCardValues[i];
-							}
-						}
-					}
+			
+			
+			char tempFirstValue = 'N';
+			char tempSecondValue = 'N';
+			char tempThirdValue = 'N';
+			int firstValueCount = 0;
+			int secondValueCount = 0;
+			int thirdValueCount = 0;
+			
+			if(playerCardValues[0] != null) 
+				tempFirstValue = playerCardValues[0].charAt(0);
+			if(playerCardValues[1] != null) 
+				tempSecondValue = playerCardValues[1].charAt(0);
+			if(playerCardValues[2] != null) 
+				tempThirdValue = playerCardValues[2].charAt(0);
+			
+			for(int m=0; m<playerCardValues.length; m++) {
+				if(playerCardValues[m] != null) {
+					char firstValue = playerCardValues[m].charAt(0);	
+					if(firstValue == tempFirstValue)
+						firstValueCount++;
+					if(firstValue == tempSecondValue)
+						secondValueCount++;
+					if(firstValue == tempThirdValue)
+						thirdValueCount++;
+					
 				}
 			}
-			if(count == 0 && valueOfThreeOfAKind=='0' )			
-				//System.out.println("For the card: "+ playerCardValue+ " = No pair values found");
-				return valueOfThreeOfAKind;
-			else{
-				if(count%3 == 0 && (count/2)==3) {
-					//threeKind = count/2;
-					return valueOfThreeOfAKind;
-					//System.out.println("Three of a kind: "+threeKind);
-					//System.out.println("Value: "+valueOfThreeOfAKind);
-				}
+			if(firstValueCount == 3)
+				valueOfThreeOfAKind = tempFirstValue;
+			if(secondValueCount == 3)
+				valueOfThreeOfAKind = tempSecondValue;
+			if(thirdValueCount == 3)
+				valueOfThreeOfAKind = tempThirdValue;
 
-				return valueOfThreeOfAKind;
-			}
+			//System.out.print("Three of a kind: "+ valueOfThreeOfAKind);
+			return valueOfThreeOfAKind;
 			
 		}
 		
 
 		//Straight - All five cards in consecutive value order - is working fine
-		public String checkStraight() {
-			String straightString = "5S 7C 6S 8D 9H";
+		public String checkStraight(String straightString) {
+			//String straightString = "5S 7C 6S 8D 9H";
 			//String straightString = "TS KC AS JD QH";
+			//3S AC AH AS 5H
+			
 			int countTen=0, countAce=0, countKing=0, countQueen=0, countJack=0;
 			ArrayList<Integer> integerCardValueList = null;
 			ArrayList<String> stringCardValueList = null;
@@ -232,7 +242,7 @@ public class Rank {
 						countJack++;								
 				}
 			}
-			if(countTen !=1 && countAce !=1 && countKing !=1 && countQueen != 1 && countJack != 1 && !differentSuite ) {
+			if(countTen > 1 && countAce >1 && countKing >1 && countQueen > 1 && countJack >1 && !differentSuite ) {
 				integerCardValueList = new ArrayList<Integer>();
 				
 				for(int j=0; j<playerCardValues.length; j++) {
@@ -284,14 +294,14 @@ public class Rank {
 				
 			}
 			
-			System.out.println(straightSequentialResult);
+			//System.out.println(straightSequentialResult);
 			return straightSequentialResult;
 			
 		}	
 
 		//Flush - All five cards having the same suite
-		public String checkFlush() {
-			String flushString = "3C 6C 7C TC QC";
+		public String checkFlush(String flushString) {
+			//String flushString = "3C 6C 7C TC QC";
 			char tempSuite = 'N';
 			int countSuite = 0;
 			String flushResult = "N";
@@ -311,9 +321,10 @@ public class Rank {
 			
 			return flushResult;	
 		}
+		
 		//Full House - Three of a kind and a pair is working fine
-		public String checkFullHouse(String a) {
-			String fullHouseString = "QH QD 4C 4D 4S";
+		public String checkFullHouse(String fullHouseString) {
+			//String fullHouseString = "QH QD 4C 4D 4S";
 			String fullHouseResult = "N";
 			char tempFirstValue = 'N';
 			char tempSecondValue = 'N';
@@ -348,60 +359,55 @@ public class Rank {
 			else if(countFirstValue == 3 && countSecondValue == 2)
 				fullHouseResult = "Y";
 			
-			System.out.println("Full House with "+countFirstValue+ " "+ tempFirstValue+"'s  and "+countSecondValue+ " "+
-								tempSecondValue+ "'s");
+			//System.out.println("Full House with "+countFirstValue+ " "+ tempFirstValue+"'s  and "+countSecondValue+ " "+
+				//				tempSecondValue+ "'s");
 			
 			if(fullHouseResult == "Y")
 				fullHouse = countFirstValue+ " "+ tempFirstValue+"'s  and "+countSecondValue+ " "+tempSecondValue+ "'s";
-				System.out.println(fullHouse);
+				//System.out.println(fullHouse);
 				
 			return fullHouse;
 		}
 		//Check Four of a kind - Working fine
 		public char checkFourOfAKind(String playerCardValue) {
-			//playerCardValue = "2H 2D 2C 2D 4S"; 
+			//String playerCardValue = "2H 2D 2C 2D 4S"; 
 			String[] playerCardValues = playerCardValue.split(" ");
-			int count = 0;
 			char valueOfFourOfAKind='N';
-			String wholeValue ="0";
-			int fourKind ;
-
-			for(int i=0; i<playerCardValues.length; i++) {
-				if(playerCardValues[i] != null) {
-					for(int j=0; j<playerCardValues.length; j++) {
-						if(playerCardValues[j] != null){
-							char firstValue = playerCardValues[i].charAt(0);						
-							char secondValue = playerCardValues[j].charAt(0);
-							if(i !=j && firstValue == secondValue) {
-								count++;
-								valueOfFourOfAKind = secondValue; 
-								wholeValue = playerCardValues[i];
-							}
-						}
-					}
+		
+			
+			char tempFirstValue = 'N';
+			char tempSecondValue = 'N';
+			int firstValueCount = 0;
+			int secondValueCount = 0;
+			
+			if(playerCardValues[0] != null) 
+				tempFirstValue = playerCardValues[0].charAt(0);
+			if(playerCardValues[1] != null) 
+				tempSecondValue = playerCardValues[1].charAt(0);
+			for(int m=0; m<playerCardValues.length; m++) {
+				if(playerCardValues[m] != null) {
+					char firstValue = playerCardValues[m].charAt(0);	
+					if(firstValue == tempFirstValue)
+						firstValueCount++;
+					if(firstValue == tempSecondValue)
+						secondValueCount++;
 				}
 			}
-			if(count == 0 && valueOfFourOfAKind=='0' )			
-				//System.out.println("For the card: "+ playerCardValue+ " = No pair values found");
-				return valueOfFourOfAKind;
-			else{
-				if(count%4 == 0 && (count/3)==4) {
-					//fourKind = count/3;
-					return valueOfFourOfAKind;
-					//System.out.println("Four of a kind: "+fourKind);
-					//System.out.println("Value: "+valueOfFourOfAKind);
-				}
-
-				return valueOfFourOfAKind;
-			}
+			if(firstValueCount == 4)
+				valueOfFourOfAKind = tempFirstValue;
+			if(secondValueCount == 4)
+				valueOfFourOfAKind = tempSecondValue;
+	
+			//System.out.println("Four of a kind: "+valueOfFourOfAKind);
+			return valueOfFourOfAKind;
 			
 		}
 		
 		
 	
 	// Royal Flush - Ten, Jack, Queen, King and Ace in the same suit - Working Fine
-	public String checkStraightFlush() {
-		String straightFlushString = "TH AH JH QH KH";
+	public String checkStraightFlush(String straightFlushString) {
+		//String straightFlushString = "TH AH JH QH KH";
 		int countTen=0, countAce=0, countKing=0, countQueen=0, countJack=0;
 		String straightFlushResult = "N";
 		ArrayList<String> stringCardValueList = null;
@@ -437,7 +443,7 @@ public class Rank {
 		if(straightFlushResult == "Y")
 			straightFlushResult = stringCardValueList.toString();
 		
-		System.out.println(straightFlushResult);
+		//System.out.println(straightFlushResult);
 		
 		return straightFlushResult;
 		
@@ -520,10 +526,6 @@ public class Rank {
 		return minValue;
 		
 	}
-	
-	
-	
-	
 
 
 }

@@ -26,23 +26,21 @@ private String fileName;
     }
     
 
-    public void writeOutput(int playerOneScore, int playerTwoScore) throws IOException
+    public void writeOutput(int playerOneScore, int playerTwoScore, int tie) throws IOException
     {
             //PrintWriter writer = new PrintWriter(new FileWriter(fileName, true),true );
     	    fileName="gameoutcome.txt";
             FileWriter fw = new FileWriter(fileName);
             PrintWriter writer = new PrintWriter(fw);
             
-            writer.println("Final score: "+" Player: ("+ playerOneScore+") Computer: ("+playerTwoScore+")");
-            
-            if (playerOneScore > playerTwoScore) 
-            {
-                writer.println("Player 1 wins!!!");
-            }
-            else
-            {
-                writer.println("Player 2 wins!!!");
-            }
+            writer.println("Final score: "+" Player 1: ("+ playerOneScore+") Player 2: ("+playerTwoScore+")");
+            writer.println("Player 1: "+ playerOneScore);
+            writer.println("Player 2: "+ playerTwoScore);
+            writer.println("Tie: "+tie );
+           
+            System.out.println("Player 1: "+ playerOneScore);
+            System.out.println("Player 2: "+ playerTwoScore);
+            System.out.println("Tie: "+tie );
             fw.close();
         
     }

@@ -1,8 +1,8 @@
 # Poker
 This console application has been developed in java using Eclipse IDE
-This application developed in 8.5 hours
+This application developed in 12.5 hours
 
-It's an initial level of poker game
+It's a poker game
 which identifies the card value based on below functionalities
 1) High card 
 2) Pair
@@ -20,7 +20,13 @@ which identifies the card value based on below functionalities
  2) Performs computations 
  3) Print results in the "gameoutcome.txt"
  
- To run this file
- Run "start.java" file
- All the functionalities logics are coded in the Rank.java
- FileIO.java takes care read and write inout and output in the text file.
+Build and Run File:
+	This programming implemented in java using Eclipse IDE
+	There are four files
+		start.java - A simple java class containing only the Main methods to start the game
+		Game.java - This class contains the abstract layer to run and write the card values
+		Rank.java - This class contains all the functionalities to perform computation on player 1 and 2 card values
+		FileIO.java - This class contains read and write file methods.
+		
+To Run this console based application - Run "start.java" file
+ 
