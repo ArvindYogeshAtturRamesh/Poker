@@ -1,3 +1,6 @@
+Please use the below Github url to access the final code
+https://github.com/ArvindYogesh/PokerGame.git
+
 # Poker
 This console application has been developed in java using Eclipse IDE
 This application developed in 12.5 hours
